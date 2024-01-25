@@ -3,7 +3,8 @@
 <head>
     <title>재훈 admin 페이지</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <a href="https://www.naver.com" target="_blank">
+    <!--깃허브 아이콘 배치 및 링크 처리-->>
+    <a href="https://github.com/BE02LEEJAEHOON/oz_class/tree/main/05_bootstrap" target="_blank">
     <img src="629b7b077c5cd817694c3233.png">
     </a>
     <style>
@@ -18,7 +19,7 @@
 </head>
 <body>
     <div class="container mt-3">
-        <h3 class="mt-5 mb-3">신규 등록 상품</h3>
+        <h3 class="mt-5 mb-3" id="new_date"></h3>
         <form class="row row-cols-lg-auto g-3 align-items-center">      
             <div class="col-12">
               <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
@@ -38,7 +39,7 @@
                 <input type="text" class="form-control" id="product_search-Form" placeholder="제품명을 입력해주세요">
               </div>
 
-              <!--!남녀 체크-->
+              <!--!남녀 체크박스 생성-->
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
@@ -63,10 +64,11 @@
                
           </form>
           <div class="container mt-3">
-        <table class="table table-sm">
+        <table class="table table-hover table-sm">
+          
             <thead>
                 <!-- 열의 속성값을 나타내는 코드를 작성해주세요 (예 : 카테고리, 브랜드, 상품명, 가격) -->
-                <tr class="table-info"></tr>
+                <tr class = "table-info">   
                     <th scope="col">카테고리</th>
                     <th scope="col">브랜드명</th>
                     <th scope="col">상품명</th>
@@ -99,8 +101,36 @@
         </ul>
       </nav>
    <script>
-
     
+      // o 성별로 구별할 수 버튼 또는 테이블 속성값에 성별을 구분할 수 있는 속성을 넣어주세요 
+      // x 카테고리 앞에 체크 박스를 하나씩 넣어주고, 선택된 체크 박스를 삭제하는 버튼을 만들어주세요 그 위치는 조회 버튼이 있는 라인의 가장 끝에 위치했으면 좋겠습니다.
+      // o 신규 등록 상품 옆에  신규 등록 상품 (2024-01-22) 형태로 변경해주시고요 날짜는 업데이트된 일자가 반영되도록 만들어주세요
+      // o 테이블 하단 또는 상단에 github 아이콘을 넣어주세요 그리고 이미지 클릭하면 여러분의 깃허브 주소로 이동하도록 만들주세요
+
+      
+
+
+      <!--날짜 실시간 업데이트 반영-->
+      function getCurrentDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+        const day = now.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+        function updateNewProduct() {
+          const newProductElement = document.getElementById('new_date');
+          const currentDate = getCurrentDate();
+          newProductElement.textContent = `신규 등록 상품 (${currentDate})`;
+      }
+  
+      // 페이지 로드 시 신규 등록 상품 업데이트 실행
+      window.onload = updateNewProduct;
+
+      
+    
+
       // 크롤링한 데이터를 아래와 같은 형태의 객체 배열로 가정합니다.
       // 추후 데이터베이스에 있는 데이터를 쿼리문으로 불러 올 수 있게 쿼리르 작성해 볼 수 있음
       const data = [
@@ -114,13 +144,16 @@
       
       const dataTable = document.getElementById('data-table');
       
-      data.forEach((item) => {
+      data.forEach((item) => {  
           const row = dataTable.insertRow();
           row.insertCell(0).innerHTML = item.category;
           row.insertCell(1).innerHTML = item.brand;
           row.insertCell(2).innerHTML = item.product;
           row.insertCell(3).innerHTML = item.price;
       });
+
+
+
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
