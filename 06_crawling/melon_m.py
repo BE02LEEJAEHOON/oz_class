@@ -40,7 +40,7 @@ time.sleep(2)
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser')
 
-chart_list = soup.select('#_chartList')
+chart_list = soup.select('#_chartList > .list_item')
 
 for i in chart_list:
     rank = i.select_one('.ranking_num').text.strip()
