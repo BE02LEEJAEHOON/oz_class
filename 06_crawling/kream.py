@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import time
 
 
-# 옵션 설정
+# 옵션 설정33
 options = Options()
 user = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
 options.add_argument(f'User-Agent={user}')
