@@ -47,6 +47,8 @@ for i in chart_list:
     title = i.select_one('.title.ellipsis').text.strip()
     singer = i.select_one('.name.ellipsis').text.strip()
     
+
+    print("멜론차트 TOP100")
     # 노래 차트순위
     print(f'현재 순위 : {rank}')
     # 노래 제목
