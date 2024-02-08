@@ -45,7 +45,7 @@ for i in range(10):
 html = driver.page_source
 soup = BeautifulSoup(html, 'html.parser')
 
-product_list = soup.find_all('li', {"class",'li_box'})
+items = soup.find_all('li', {"class",'li_box'})
 
 
 # for i in range(len(product_list)):
@@ -54,8 +54,9 @@ product_list = soup.find_all('li', {"class",'li_box'})
 #     else:
 #         continue
 
-num = 0
-for i in product_list:
+product_list = []
+for i in items:
+    category = '겨울 싱글 코트'
     product_brand = i.select_one('.item_title').text.strip()
     product_name = i.select_one('.list_info').text.strip()
     product_price_element = i.select_one('.price')
@@ -71,17 +72,51 @@ for i in product_list:
     else:
         product_review = product_review.text.strip()
 
-    num += 1
-    #print("*** 무신사 추천순 랭킹 (겨울 싱글코트 부분) ***")
-    print(f'순위 : [{num}]위')
-    print(f'브랜드명 : {product_brand}')
-    print(f'상품명 : {product_name}')
-    print(f'금액 : {product_price}')
-    print(f'리뷰 :{product_review}개')
-    print()
+    # print(f'브랜드명 : {product_brand}')
+    # print(f'상품명 : {product_name}')
+    # print(f'금액 : {product_price}')
+    # print(f'리뷰 :{product_review}개')
+    # print()
+    
+    items = [category, product_brand, product_name, product_price, product_review]
+    product_list.append(items)
+    #print(items)
+
+#2페이지 넘기기
+#driver.find_element(By.CSS_SELECTOR, '.paging-btn.btn:contains("2")').click()
+
+
+
+
+# 데이터 베이스 연동 후 -> 수집 한 데이터를 DB에 저장 (csv)
+import pymysql
+
+# mysql 서버 연결
+connection = pymysql.connect(
+    host = '127.0.0.1',
+    user = 'root',
+    password = '0000',
+    db='musinsa',
+    charset='utf8mb4'
+)
+# 커서 생성
+connection.cursor()
+
+
+def execute_query(connection, query, args=None):
+    with connection.cursor() as cursor:
+        cursor.execute(query, args or ())
+        if query.strip().upper().startswith('SELECT'):
+            return cursor.fetchall()
+        else:
+            connection.commit()
+
+for i in product_list:
+    execute_query(connection, "INSERT INTO musinsa (category, product_brand, product_name, product_price, product_review) VALUES (%s, %s, %s, %s, %s)", (i[0],i[1],i[2],i[3],i[4]))
+
+
+
+
     
 
 
-    #2페이지 넘기기
-
-#driver.find_element(By.CSS_SELECTOR, '.paging-btn.btn:contains("2")').click()
