@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <title>재훈 admin 페이지</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}"></script>
+    <!--깃허브 아이콘 배치 및 링크 처리-->>
+    <a href="https://github.com/BE02LEEJAEHOON/oz_class/tree/main/05_bootstrap" target="_blank">
+    <img src="https://velog.velcdn.com/images/doobyeol/post/52d05c07-e9d1-480b-be89-605a54313d4e/github.jpg">
+    </a>
+    <style>
+        img{
+            display: flex;
+            margin:auto;
+            margin-top: 30px;
+            width: 15%;
+            height: 15%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-3">
+        <h3 class="mt-5 mb-3" id="new_date"></h3>
+        <form class="row row-cols-lg-auto g-3 align-items-center">      
+            <div class="col-12">
+              <label class="visually-hidden" for="inlineFormSelectPref">Preference</label>
+              <select class="form-select" id="inlineFormSelectPref">
+                <!-- 카테고리 셀렉트 코드를 넣어주세요-->
+                    <option selected>카테고리</option>
+                    <option value="1">상의</option>
+                    <option value="2">하의</option>
+                    <option value="3">아우터</option>
+                    <option value="4">신발</option>
+                    <option value="5">패션잡화</option>
+                  </select>
+              </select>
+            </div>
+            <div class="col-3">
+                <!-- input 입력창 코드를 넣어주세요 -->
+                <input type="text" class="form-control" id="product_search-Form" placeholder="제품명을 입력해주세요">
+              </div>
+
+              <!--!남녀 체크박스 생성-->
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  남성
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                  여성
+                </label>
+              </div>
+
+              <div class="col-auto">
+                <!-- 조회버튼 코드를 넣어주세요 -->
+                <button type="button" class="btn btn-primary">조회</button>
+              </div>
+
+                <!--!체크박스 품목 삭제버튼-->
+                <button type="button" class="btn btn-danger">삭제</button>
+
+               
+          </form>
+          <div class="container mt-3">
+        <table class="table table-hover table-sm">
+          
+            <thead>
+                <!-- 열의 속성값을 나타내는 코드를 작성해주세요 (예 : 카테고리, 브랜드, 상품명, 가격) -->
+                <tr class = "table-info">   
+                    <th scope="col">카테고리</th>
+                    <th scope="col">브랜드명</th>
+                    <th scope="col">상품명</th>
+                    <th scope="col">가격</th>
+                  </tr>
+            </thead>
+            <tbody id="data-table">
+                {% for i in data_list %}
+                <tr>
+                  <td>{{ i[0] }}</td>
+                  <td>{{ i[1] }}</td>
+                  <td>{{ i[2] }}</td>
+                  <td>{{ i[3] }}</td>
+                </tr>
+                {% endfor %}
+                <!--! 추후 크롤링한 데이터가 들어가는 자리 -->
+
+            </tbody>
+        </table>
+    </div>
+    <!-- 페이지 네이션 코드를 넣어주세요 -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+   <script>
+    
+      // o 성별로 구별할 수 버튼 또는 테이블 속성값에 성별을 구분할 수 있는 속성을 넣어주세요 
+      // x 카테고리 앞에 체크 박스를 하나씩 넣어주고, 선택된 체크 박스를 삭제하는 버튼을 만들어주세요 그 위치는 조회 버튼이 있는 라인의 가장 끝에 위치했으면 좋겠습니다.
+      // o 신규 등록 상품 옆에  신규 등록 상품 (2024-01-22) 형태로 변경해주시고요 날짜는 업데이트된 일자가 반영되도록 만들어주세요
+      // o 테이블 하단 또는 상단에 github 아이콘을 넣어주세요 그리고 이미지 클릭하면 여러분의 깃허브 주소로 이동하도록 만들주세요
+
+      
+
+
+      <!--날짜 실시간 업데이트 반영-->
+      function getCurrentDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 필요
+        const day = now.getDate().toString().padStart(2, '0');
+        return `${year}-${month}-${day}`;
+      }
+
+        function updateNewProduct() {
+          const newProductElement = document.getElementById('new_date');
+          const currentDate = getCurrentDate();
+          newProductElement.textContent = `무신사 인기 BEST 품목 (${currentDate})`;
+      }
+  
+      // 페이지 로드 시 신규 등록 상품 업데이트 실행
+      window.onload = updateNewProduct;
+
+      
+    
+
+      // 크롤링한 데이터를 아래와 같은 형태의 객체 배열로 가정합니다.
+      // 추후 데이터베이스에 있는 데이터를 쿼리문으로 불러 올 수 있게 쿼리르 작성해 볼 수 있음
+      // const data = [
+      //     { category: "상의", brand: 'Supreme', product: '슈프림 박스로고 후드티', price: '390,000' },
+      //     { category: "하의", brand: 'DIESEL', product: '디젤 트랙 팬츠', price: '188,000' },
+      //     { category: "아우터", brand: 'Thom Browne', product: '폴리 트윌 파카 블랙', price: '2,258,000' },
+      //     { category: "신발", brand: 'Nike', product: '에어포스 1', price: '137,000' },
+      //     { category: "패션잡화", brand: 'Music&Goods', product: '빵빵이 키링', price: '29,000' },
+      //     // ...
+      // ];
+      
+      // const dataTable = document.getElementById('data-table');
+      
+      // data_list.forEach((item) => {  
+      //     const row = dataTable.insertRow();
+      //     row.insertCell(0).innerHTML = item.category;
+      //     row.insertCell(1).innerHTML = item.product_brand;
+      //     row.insertCell(2).innerHTML = item.product_name;
+      //     row.insertCell(3).innerHTML = item.product_price;
+      // });
+
+
+
+
+    </script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+</body>
+</html>
