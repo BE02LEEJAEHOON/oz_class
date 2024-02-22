@@ -1,10 +1,68 @@
 1. 맥북에 리눅스 환경 설치 진행 (UTM , Ubuntu 설치)
    
 2. 리눅스 사용법
-- CommandNames 들은 쉘의 검색 PATH 안에 있어야 한다.
-- 쉘은 터미널을 통해 명령이 제출될 때 명령의 의미를 해석하는 것.
-- Linux 명령은 CommandName -options input 의 구조를 따른다.
-- 일부 명령에는 긴 형식과 짧은 형식 옵션이 있을 수 있다. (ex --universal)
-- 짧은 형식 옵션에는 대시 1개(-)가 있고 긴 형식 옵션에는 대시 2개(--)가 있습니다.
+   - CommandNames 들은 쉘의 검색 PATH 안에 있어야 한다.
+   - 쉘은 터미널을 통해 명령이 제출될 때 명령의 의미를 해석하는 것.
+   - Linux 명령은 CommandName -options input 의 구조를 따른다.
+   - 일부 명령에는 긴 형식과 짧은 형식 옵션이 있을 수 있다. (ex --universal)
+   - 짧은 형식 옵션에는 대시 1개(-)가 있고 긴 형식 옵션에는 대시 2개(--)가 있습니다.
 
-3. ![image](https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/a9c67d7b-5c06-4a15-a287-2e57f54dc072)
+![image](https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/a9c67d7b-5c06-4a15-a287-2e57f54dc072)
+
+
+[] -> 선택사항
+<> -> 필수사항
+... -> 반복 할 수 있음
+| -> 둘 중 하나만 사용
+
+ex)
+which [-a] <SOMETHING>
+which [-a | -f] <SOMETHING>
+which [-a | -f] filename ...
+
+
+3. cat 명령어
+   - cat 명령은 파일(들)을 순서대로 읽고 그 내용을 읽은 순서대로 표준 출력(standard output)에 쓰이는 명령
+  
+
+4. Input과 Output 내용 정리
+   - Standard Output, Standard Input, Standard Error는 표준 데이터 스트림이다.
+   - Standard Output, Standard Error은 기본 적으로 Terminal에 연결되어 있다.
+   - Standard Input Data Stream은 기본적으로 키보드에 연결되어 있다.
+
+  
+5. Redirect Standard Output
+   - cat 1> output.txt (1 생략 가능)
+   - cat 1>> output.txt (>을 2개 넣을 경우 내용이 바뀌는게 아닌 추가가 된다)
+  
+
+6. Redirect Standard Error, Input
+   - cat 2>> error.txt
+   - 읽기는 0< 으로 시작
+  
+
+7. Piping
+   - 파이핑은 한 명령의 표준 출력을 다른 명령의 표준 입력에 연결하는 것이다.
+   - 대부분의 키보드에서 SHIFT + BACKSLASH(\)를 눌러 엑세스할 수 있는 파이프 문자(|)를 사용하여 파이프 한다.
+   -  ex) date | cut --delimiter ' ' --fields 1 > today.txt
+   -  ex) date | cut > today.txt --delimiter ' ' --fields 1
+      (둘다 똑같은 명령어.. 순서만 다를 뿐!)
+  
+
+8. Tee 명령어
+   - T자 형태처럼??
+   - ex) date | tee date.txt | cut --delimiter ' ' --fields 1 ( 또는 뒤에 필드 부분은 --field=1 으로도 가능 단수복수 차이)
+   - 만약 하단 명령어를 타이핑 한다면 전체 데이터를 출력하는 date.txt가 만들어지고, 요일 부분만 짜른 today.txt가 만들어진다.
+     date | tee date.txt | cut delimiter ' ' --field=1 > today.txt
+
+
+9. xargs 명령어
+   - xargs 유틸리티를 사용하여 표준 입력에서 명령을 작성하고 실행할 수 있다. 일반적으로 pipe를 통해 다른 명령과 함께 사용된다.
+   - xargs는 빈칸이나 새 줄로 구분된 표준 입력에서 인수를 읽고 명령의 인수로 입력을 사용하여 지정된 명령을 실행한다. 명령이 제공되지 않을 경우 기본값은 /bin/echo이다.
+   - ex) date | xargs echo 'Hello World'
+
+
+10. Aliases (별칭)
+   - 별칭을 사용하면 파이프라인과 명령을 기억하기 쉬운 별명으로 저장하여 나중에 훨씬 쉽게 사용 할 수 있다.
+   - 홈 디렉터리의 .bash_aliases 파일에서 별칭을 정의한다. 존재하지 않는 경우 표시된 대로 정확하게 철자를 작성해야한다. 앞에 마침표(.)가 포함되어야 하며 파일 확장자(ex: .txt  .pdf)가 없어야 한다.
+   - ex) alias getdates='date | teee /home~~~~~~ 변수 선언이랑 비슷한듯??ㅎㅎ;
