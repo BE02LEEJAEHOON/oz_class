@@ -1,3 +1,5 @@
+# 리눅스와 기본 명령어 알아보기
+
 1. 맥북에 리눅스 환경 설치 진행 (UTM , Ubuntu 설치)
    
 2. 리눅스 사용법
@@ -66,3 +68,34 @@ which [-a | -f] filename ...
    - 별칭을 사용하면 파이프라인과 명령을 기억하기 쉬운 별명으로 저장하여 나중에 훨씬 쉽게 사용 할 수 있다.
    - 홈 디렉터리의 .bash_aliases 파일에서 별칭을 정의한다. 존재하지 않는 경우 표시된 대로 정확하게 철자를 작성해야한다. 앞에 마침표(.)가 포함되어야 하며 파일 확장자(ex: .txt  .pdf)가 없어야 한다.
    - ex) alias getdates='date | teee /home~~~~~~ 변수 선언이랑 비슷한듯??ㅎㅎ;
+
+
+
+
+# 리눅스 명령어로 파일 관리하기
+
+1. File System 기본
+   - 예를 들어, ls -F 명령어 실행 시 리스트 옆에 /가 붙으면 폴더형식이라는 걸 알 수 있다. (파일 형식은 슬래쉬가 붙지 않는다)
+   -  ls -l 실행 시, 리스트 목록 앞에 drwxr 이라고 되어 있는데 여기서 rwx는 (d = directory / r = read / w = write / x = execute) 의 약자이다
+   -  ![image](https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/28c018e6-1fd0-4628-b7c6-6293c699ca16)
+   -  ![image](https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/3ed29b5b-91d0-4a59-9b0f-2c06c73c050f)
+  
+
+2. cd 명령어
+   - Linux파일 시스템은 슬래시(/)로 표시된 기본(또는 루트) 디렉토리에서 시작하는 트리형 구조를 따른다. 파일 시스템의 위치는 파일 경로를 사용하여 표시된다.
+   - 기본 디렉토리(/)에서 시작하는 경로를 절대 경로라고 한다. shell의 현재 작업 디렉토리에서 시작하는 경로를 상대 경로라고 한다.
+   - 예를 들어, 이 두 예제 모두 zidol 이라는 사용자의 문서 폴더에 있는 'file1.txt'라는 파일을 참조한다. 상대 경로는 shell이 zidol의 홈 디렉토리에 있다고 가정한다.
+     절대 경로 : /home/zidol/Documents/file1.txt
+     상대 경로 : Documents/file1.txt
+     
+   ##cd 란? => change directory (경로변경)
+         * cd /   최상위 디렉토리(루트 디렉토리) 이동
+         * cd ~   홈 디렉토리로 이동
+         * cd -   이전 경로로 이동
+         * cd ..  상위 디렉토리로 이동
+
+
+3. File Extension
+   - 리눅스는 확장자에 대해서 그리 중요하지 않다..? 리눅스는 헤더 부분을 읽기 때문에 상관이 없다..? (ex jpg -> png 바꾸거나 txt -> pdf 를 바꿔도 신경쓰지 않는다..?)
+
+ 
