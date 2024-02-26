@@ -86,7 +86,7 @@ Flask
    
    (2) 클래스
    하나의 틀이다. 데이터 저장 기능
-   
+   '''
    class FishBread:
    		name = "팥붕어빵"
    		def redbean_bread(self):
@@ -104,3 +104,4 @@ Flask
    a.redbean_bread() # 클래스 내 함수(메소드)에 접근
    a.black_bread("블랙")
    a.name # 클래스 내 변수(속성)에 접근
+   '''
