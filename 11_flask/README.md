@@ -64,3 +64,43 @@ Flask
     반복되는 문장에서 건너뛰고 싶을 땐 ⇒ continue
     
     반복을 멈추고 싶을 땐 ⇒ break
+
+
+
+
+
+## 3. 파이썬 함수와 클래스
+   (1) 함수 (def)
+   반복적으로 생성되는 코드들을 재활용하여 사용하고 싶을 때 사용
+   
+   def 함수명(매개변수): 
+   		실행할 문장
+   
+   함수명(인수)
+   
+   def Name(name):
+   	return name
+   
+   Name()
+   
+   
+   (2) 클래스
+   하나의 틀이다. 데이터 저장 기능
+   
+   class FishBread:
+   		name = "팥붕어빵"
+   		def redbean_bread(self):
+   			print("이 붕어빵은 " + self.name + " 입니다.")
+   
+   		def black_bread(self):
+   			print("이 붕어빵은 " + self.name + " 입니다.")
+   
+   FishBread.redbean_bread()
+   FishBread.black_bread()
+   
+   a = FishBread() # 클래스 호출
+   type(a) # 클래스
+   
+   a.redbean_bread() # 클래스 내 함수(메소드)에 접근
+   a.black_bread("블랙")
+   a.name # 클래스 내 변수(속성)에 접근
