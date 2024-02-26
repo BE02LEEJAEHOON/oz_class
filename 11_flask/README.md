@@ -13,6 +13,7 @@ Flask
 ## 2. 파이썬 제어문
 
 ### 조건문 - if
+```
   (1) 형태
         if 조건문:
         		실행할 코드 ( if 조건문이 참일 때)
@@ -34,8 +35,10 @@ Flask
     weight == 100 # weight라는 값이 100이라는 값과 같은가? -> 같으면: True, 다르면: False
 
   (3) and, or
+```
 
 ### 반복문 - for, while
+```
   (1) for
       for i in range(1000):
       	print(i) # 0~999까지
@@ -57,6 +60,7 @@ Flask
       	i += 1
       
       *조건문이 참인 경우에 문장이 반복되서 실행
+```
 
 
 ### continue, break
@@ -70,6 +74,7 @@ Flask
 
 
 ## 3. 파이썬 함수와 클래스
+```
    (1) 함수 (def)
    반복적으로 생성되는 코드들을 재활용하여 사용하고 싶을 때 사용
    
@@ -86,7 +91,7 @@ Flask
    
    (2) 클래스
    하나의 틀이다. 데이터 저장 기능
- ```
+
    class FishBread:
    		name = "팥붕어빵"
    		def redbean_bread(self):
