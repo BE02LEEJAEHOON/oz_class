@@ -1,7 +1,7 @@
 # Flask란?
 
 ## Flask란?
-<img src="https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/80dbc369-8ec7-4075-9b33-d8f2f33e3c8d" width="200" height="170"/>
+<img src="https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/80dbc369-8ec7-4075-9b33-d8f2f33e3c8d" width="270" height="170"/>
 
 **특징**
 
