@@ -13,7 +13,7 @@ Flask
 ## 2. 파이썬 제어문
 
 ### 조건문 - if
-```
+```python
   (1) 형태
         if 조건문:
         		실행할 코드 ( if 조건문이 참일 때)
@@ -38,7 +38,7 @@ Flask
 ```
 
 ### 반복문 - for, while
-```
+```python
   (1) for
       for i in range(1000):
       	print(i) # 0~999까지
@@ -74,7 +74,7 @@ Flask
 
 
 ## 3. 파이썬 함수와 클래스
-```
+```python
    (1) 함수 (def)
    반복적으로 생성되는 코드들을 재활용하여 사용하고 싶을 때 사용
    
@@ -110,3 +110,44 @@ Flask
    a.black_bread("블랙")
    a.name # 클래스 내 변수(속성)에 접근
    ```
+
+
+
+## 4.파이썬 내장함수 / 외장함수 (import)
+![image](https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/394629e1-0b2a-4921-959d-51cfdf71aaad)
+
+
+### 외장함수
+import문을 통해 외부의 라이브러리에서 가져온 함수
+```python
+import <모듈이름>
+```
+
+```python
+(1) random
+
+random.random() # 0~1.0 사이의 실수 중에서 난수(무작위로 추출된 숫자)값 리턴
+random.randint(1, 10) # 1~10 사이의 정수 중에서 난수값 리턴
+
+a = [1,2,3,4,5]
+random.choice(a) # list 값 중 무작위로 하나를 선택하여 리턴
+random.shuffle(a) # list를 무작위로 섞는다.
+
+(2) sys
+파이썬 인터프리터가 제공하는 변수와 함수를 직접 제어할 수 있게 도와주는 라이브러리
+
+sys.argv # 파이썬 실행시 파일 뒤에 붙여준 어떠한 값들이 리스트의 값으로 추가됨.
+sys.exit() # 프로그램을 종료시키고 싶은 곳에서 사용
+sys.path # 파이썬 라이브러리들이 설치되어 있는 위치
+sys.version # 파이썬 버전
+
+(4) os
+시스템(OS)의 환경변수, 파일경로 등의 값을 제어할 떄 사용
+os.environ
+os.getcwd() # cwd => current working directory
+os.chdir("경로") # 현재 디렉토리 위치 변경
+
+os.mkdir("new_folder") # 폴더생성
+os.rename("new_folder", "old_folder")
+os.rmdir("new_folder")
+```
