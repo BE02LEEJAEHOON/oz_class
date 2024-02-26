@@ -1,4 +1,5 @@
 https://yozm.wishket.com/magazine/detail/2103/ -> 여기 들어가면 리눅스 유용한 자료들 확인 가능함 !!
+https://tartan-steel-3da.notion.site/x-e64f2bfc7d6849958dd2af254fb42bd8 -> 리눅스 라이브 세션 QnA 자료
 
 # 리눅스와 기본 명령어 알아보기
 
