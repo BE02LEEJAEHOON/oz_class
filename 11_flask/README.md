@@ -150,3 +150,128 @@ os.mkdir("new_folder") # 폴더생성
 os.rename("new_folder", "old_folder")
 os.rmdir("new_folder")
 ```
+
+
+## 클래스 (class)
+
+- 파이썬은 객체지향 프로그래밍 (OOP, Object Oriented Programming)을 지원한다. 
+그리고 객체지향 프로그래밍의 가장 기본 단위가 클래스다.
+
+하나의 틀과 같은 역할을 하며, 데이터 저장도 가능하다.
+
+ex) 붕어빵을 만들어 내는 틀 - 팥을 넣으면 팥붕어빵, 슈크림 넣으면 슈크림 붕어빵, 피자 재료를 넣으면 피자 붕어빵
+
+*함수가 특정 기능을 수행하는 일련의 코드블록을 나타내는데, 클래스는 함수보다는 더 큰 개념. 함수가 여러개 모아놓은 것.
+
+클래스 정의
+```ptyhon
+class FishBread:
+		def redbean_bread(self):
+			print("이 붕어빵은 " + self.name + " 입니다.")
+
+		def sucream_bread(self):
+			print("이 붕어빵은 " + self.name + " 입니다.")
+```
+
+클래스 호출
+```ptyhon
+a = FishBread() # 클래스 호출
+type(a) # 클래스
+
+a.redbean_bread() # 클래스 내 함수(메소드)에 접근
+a.name # 클래스 내 변수(속성)에 접근
+```
+
+*클래스 내에 정의 되는 
+- 변수를 속성
+- 함수를 메소드라 부른다.
+
+클래스를 만들어 보자
+```python
+class FishBread:
+	# 생성자 => 클래스가 호출될 때 가장 먼저 실행되는 메소드
+	def __init__(self, name, ingredient, price):
+		self.name = name
+		self.ingredient = ingredient
+		self.price = price
+
+	def bread(self):
+		print("이 붕어빵의 이름은 {}이고, {}이 들어가있습니다. 가격은 {} 입니다.".format(self.name, self.ingredient, self.price))
+
+
+redbean_bread = FishBread("팥붕어빵", "팥", 500)
+redbean_bread.bread()
+print(redbean_bread.name)
+print(redbean_bread.ingredient)
+print(str(redbean_bread.price))
+
+cream_bread = FishBread("슈크림 붕어빵", "크림", 700)
+cream_bread.bread()
+
+pizza_bread = FishBread("피자 붕어빵", "피자", 1000)
+pizza_bread.bread()
+```
+*self는 데이터를 저장할 수 있게 도와주는 공간
+
+
+## 4. 모듈(module)
+
+변수, 함수, 클래스 등을 모아 놓은 파일
+
+모듈 사용 방법
+```python
+1.함수 정의
+
+(1) info.py 파이썬 파일 생성하고 함수를 정의해보자
+def name(name):
+	print("my name is " + name)
+
+def age(age):
+		print("I'm {} years old".format(age))
+
+(2) chapter8.py 파일로 다시 돌아와서 위 파일을 import 해준다
+import info
+
+info.name("inseop")
+info.age(30)
+
+2.변수 정의
+(1) info.py에 변수 정의
+person = {
+  "name": "inseop",
+  "age": 30,
+  "city": "seoul"
+}
+
+(2) chapter8.py에서
+import info
+
+name = info.person["name"]
+print(name)
+
+age = info.person["age"]
+print(age)
+
+city = info.person["city"]
+print(city)
+```
+```python
+import 모듈이름
+```
+
+모듈 이름을 붙이지 않고 모듈 함수를 바로 호출하는 방법
+```python
+from 모듈이름 import 함수이름 (또는 *)
+
+from info import name, age
+from info import *
+```
+
+
+## 5. 패키지 (=라이브러리)
+
+모듈들의 집합
+
+- 여러 모듈들이 하나의 상위 폴더에 모여있는 것
+
+변수 → 함수 → 클래스 → 모듈 → 라이브러리
