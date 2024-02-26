@@ -1,3 +1,5 @@
+https://yozm.wishket.com/magazine/detail/2103/ -> 여기 들어가면 리눅스 유용한 자료들 확인 가능함 !!
+
 # 리눅스와 기본 명령어 알아보기
 
 1. 맥북에 리눅스 환경 설치 진행 (UTM , Ubuntu 설치)
