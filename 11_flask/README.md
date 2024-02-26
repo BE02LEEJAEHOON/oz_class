@@ -2,7 +2,8 @@
 
 ## Flask란?
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/00feaf78-d356-41ee-90f9-616e7f73fd77/abe03d7c-7f0c-4aeb-8899-b10f72468a10/Untitled.png)
+![image](https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/80dbc369-8ec7-4075-9b33-d8f2f33e3c8d)
+
 
 **특징**
 
