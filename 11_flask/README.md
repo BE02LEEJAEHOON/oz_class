@@ -219,7 +219,7 @@ def submit():
 ```
 
 # 04. REST API 란?
-<img src="https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/aaa9deeb-0595-4ea2-9ac0-d50b25d8345d" width="270" height="170"/>
+<img src="https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/aaa9deeb-0595-4ea2-9ac0-d50b25d8345d" width="270" height="330"/>
 
 
 REST(Representational State Transfer)란
