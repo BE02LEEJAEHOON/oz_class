@@ -93,4 +93,20 @@
     - **오버헤드의 존재**: Express 자체는 매우 가볍지만, 복잡한 애플리케이션을 구축하기 위해서는 여러 추가 모듈과 미들웨어를 선택하고 구성해야하는 단점
     - **구조적인 유연성**: Express는 구조에 대해 엄격한 규칙을 제시하지 않기 때문에, 프로젝트가 커질수록 구조적인 일관성을 유지하는 것이 어려울 수 있습니다.
  
-- 
+
+
+# 02. Flask 프로젝트 세팅
+  - 가상 환경 (Virtual Environment)
+```python
+    # poetry
+> poetry init
+> poetry add flask
+
+# conda
+> conda create -n test_env python=3.10
+
+# venv #가상환경 실행문
+python3.10 -m venv .venv
+source .venv/bin/activate
+cd .\venv\Scripts\activate
+```
