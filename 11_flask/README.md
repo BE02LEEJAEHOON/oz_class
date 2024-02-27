@@ -118,7 +118,7 @@ or
 > flask --app app.py --debug run
 ```
 
-# 04. 라우팅(Route)
+# 03. 라우팅(Route)
 
 ### 1. **라우팅**
 
@@ -217,3 +217,30 @@ def submit():
     key2 = data.get('key2')
     return f'Received: key1={key1}, key2={key2}'
 ```
+
+# 04. REST API 란?
+![image](https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/aaa9deeb-0595-4ea2-9ac0-d50b25d8345d)
+
+REST(Representational State Transfer)란
+
+- Representational: 표현
+- State: 상태
+- Transfer: 전송 (클라이언트 < == > 서버 사이의 전송)
+
+API(Application Programming Interface)란
+
+- 프로그램간의 상호작용을 뜻함 (데이터 교환)
+
+RESTful한 API는 자원(Resource, 데이터) 중심으로 설계되며, HTTP 프로토콜의 메소드(GET, POST, PUT, DELETE 등)를 사용하여 해당 자원에 대한 CRUD(Create, Read, Update, Delete) 작업을 수행합니다.
+
+- **자원 식별**: 사용자 정보 자원은 **`/users/{userId}`** URI를 통해 식별됩니다.
+- **자원 표현**: 사용자 정보는 JSON, XML의 형태로 클라이언트에게 전달됩니다.
+- **자원에 대한 행위**: 사용자 정보를 조회하기 위해 **`GET /users/{userId}`** 요청을 사용하고, 사용자를 생성하기 위해 **`POST /users`** 요청을 사용합니다.
+    - **`GET`** (자원 읽기), **`POST`** (자원 생성), **`PUT`** (자원 업데이트), **`DELETE`** (자원 삭제).
+
+**REST API 탄생 배경**
+
+- 다양해진 서비스의 형태(모바일앱,웹,와치앱,티비앱)에 대응하기 위해 등장 ⇒ 안드로이드용 서버, iOS 서버, Homepage용 서버를 따로 구축하지 않아도됨.
+- 이를 위해 클라이언트의 형태와 상관없이 문자열 기반의 XML, json과 같은 데이터를 주고 받게됨
+- 기존에는 서비스가 대부분 웹의 형태였기 때문에 ASP, JSP, PHP 등을 사용했었음.
+
