@@ -98,15 +98,122 @@
 # 02. Flask 프로젝트 세팅
   - 가상 환경 (Virtual Environment)
 ```python
-    # poetry
+# poetry
 > poetry init
 > poetry add flask
 
 # conda
 > conda create -n test_env python=3.10
 
-# venv #가상환경 실행문
+# venv 가상환경 실행문
 python3.10 -m venv .venv
 source .venv/bin/activate
 cd .\venv\Scripts\activate
+
+# flask 실행문
+> python -m flask
+or
+> flask run
+or
+> flask --app app.py --debug run
+```
+
+# 04. 라우팅(Route)
+
+### 1. **라우팅**
+
+- URL과 특정 함수 간의 매핑을 정의하는 것
+- **`@app.route()`** 데코레이터를 사용하여 특정 URL 경로에 대한 요청이 발생했을 때 실행될 함수를 지정
+- [API — Flask Documentation (2.1.x) (palletsprojects.com)](https://flask.palletsprojects.com/en/2.1.x/api/#url-route-registrations)
+
+
+app.py
+```python
+from flask import Flask
+
+app = Flask(__name__)
+```
+
+```python
+# 기본 경로에 대한 라우트
+@app.route('/')
+def home():
+    return 'Hello, this is the home page!'
+
+# 다른 경로에 대한 라우트
+# 127.0.0.1:5000/about
+@app.route('/about')
+def about():
+    return 'This is the about page.'
+
+# 127.0.0.1:5000/project
+@app.route('/project')
+def project():
+    return 'The project page'
+```
+
+```python
+# 동적인 URL 파라미터 사용
+@app.route('/user/<username>')
+def show_user_profile(username):
+    return f'User: {username}'
+
+# URL에 변수 및 타입 지정
+@app.route('/post/<int:post_id>')
+def show_post(post_id):
+    return f'Post ID: {post_id}'
+```
+
+```python
+## API END POINT 생성 ##
+# CRUD: Create(POST), Read(GET), Update(UPDATE), Delete(DELETE) -> REST API
+# GET: 데이터를 요청할 때
+# POST: CREATE. 데이터를 생성할 때
+from flask import jsonify
+@app.route("/api/v1/feeds", methods=['GET'])
+def get_all_feeds():
+    # DB에서 불러온다.
+    data = {
+        'status': 'success',
+        'feed': {
+            "feed1": "data",
+            "feed2": "data2"
+        }
+    }
+    # python -> dict -> json
+    return jsonify(data)
+```
+
+```python
+# 다양한 HTTP 메소드 지원
+@app.route('/submit', methods=['POST', 'GET'])
+def submit():
+    if request.method == 'POST':
+        return 'POST method.'
+    else:
+        return 'GET method.'
+```
+
+### **`request.json` 사용하기**
+
+JSON 형태의 데이터를 보낼 경우 (**`content-type`**이 **`application/json`**인 경우), **`request.json`** 또는 **`request.get_json()`**을 사용합니다. 이는 파이썬 딕셔너리 형태로 JSON 데이터를 자동으로 파싱해줍니다.
+
+요청을 보내는 곳
+```python
+@app.route('/test')
+def user_profile():
+    url = 'http://localhost:5000/submit'
+    data = {'key1': 'value1', 'key2': 'value2'}
+    response = requests.post(url, data=data)
+    return response
+```
+
+요청을 받는 곳
+```python
+@app.route('/submit', methods=['POST'])
+def submit():
+    data = request.json
+    key1 = data.get('key1')
+    key2 = data.get('key2')
+    return f'Received: key1={key1}, key2={key2}'
 ```
