@@ -13,8 +13,7 @@
 
   ### API
     - M/C (Management Console)
-    - CLI (Command Line Interface)                                                                                                                                                                                                                                                                                                                                     
-    - SDK (software develop k
+    - CLI (Command Line Interface)                                                                                                                                                          - SDK (software develop kit)
 
 
 
