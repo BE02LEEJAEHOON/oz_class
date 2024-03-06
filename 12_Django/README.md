@@ -1,5 +1,5 @@
 # 01. Django란? 
-<img src='https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/b14b9f62-c11d-4d61-93c7-c31f0b4a7a4f' width = '300' height = '200'/>
+<img src='https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/b14b9f62-c11d-4d61-93c7-c31f0b4a7a4f' width = '450' height = '300'/>
 
 
 ## 장고란 무엇인가?
