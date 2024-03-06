@@ -64,3 +64,74 @@
 
 ## Django 프로젝트 생성
     - django-admin startproject config . # 현재 폴더에서 프로젝트 생성 ( . 은 현재 경로)
+
+
+## django-admin 명령어
+    - **1. 프로젝트와 앱 관리**
+
+    - **startproject**
+        - 새로운 Django 프로젝트를 생성합니다.
+        - 사용 예: **`django-admin startproject myproject`**
+    - **startapp**
+        - 프로젝트 내에 새로운 애플리케이션을 생성합니다.
+        - 사용 예: **`django-admin startapp myapp`**
+    
+    **2. 데이터베이스 관리**
+    
+    - **migrate**
+        - 데이터베이스 스키마를 새로운 모델 또는 모델 변경사항에 맞게 업데이트합니다.
+        - 사용 예: **`django-admin migrate`**
+    - **makemigrations**
+        - 모델 변경사항에 대한 마이그레이션 파일을 생성합니다.
+        - 사용 예: **`django-admin makemigrations`**
+    - **sqlmigrate**
+        - 특정 마이그레이션에 대한 SQL 문을 출력합니다.
+        - 사용 예: **`django-admin sqlmigrate myapp 0001`**
+    - **showmigrations**
+        - 프로젝트의 마이그레이션 상태를 나열합니다.
+        - 사용 예: **`django-admin showmigrations`**
+    
+    **3. 서버 관리**
+    
+    - **runserver**
+        - 개발 서버를 시작합니다.
+        - 사용 예: **`django-admin runserver`**
+    
+    **4. 데이터 관리**
+    
+    - **dumpdata**
+        - 데이터베이스의 내용을 JSON 또는 다른 형식으로 내보냅니다.
+        - 사용 예: **`django-admin dumpdata myapp`**
+    - **loaddata**
+        - **`dumpdata`**를 통해 출력된 데이터를 데이터베이스에 로드합니다.
+        - 사용 예: **`django-admin loaddata myapp_data.json`**
+    
+    **5. 테스트 및 디버깅**
+    
+    - **test**
+        - Django 앱의 테스트를 실행합니다.
+        - 사용 예: **`django-admin test myapp`**
+    - **shell**
+        - Django 프로젝트의 컨텍스트 내에서 Python 셸을 시작합니다.
+        - 사용 예: **`django-admin shell`**
+    
+    **6. 보안 관리**
+    
+    - **createsuperuser**
+        - 관리자 계정을 생성합니다.
+        - 사용 예: **`django-admin createsuperuser`**
+    - **changepassword**
+        - 사용자의 비밀번호를 변경합니다.
+        - 사용 예: **`django-admin changepassword myusername`**
+    
+    **7. 기타 유틸리티**
+    
+    - **check**
+        - 프로젝트의 문제를 확인합니다.
+        - 사용 예: **`django-admin check`**
+    - **collectstatic**
+        - 정적 파일을 한 곳으로 모읍니다.
+        - 사용 예: **`django-admin collectstatic`**
+    - **clearsessions**
+        - 만료된 세션을 데이터베이스에서 삭제합니다.
+        - 사용 예: **`django-admin clearsessions`**
