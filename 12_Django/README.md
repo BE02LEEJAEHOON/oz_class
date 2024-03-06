@@ -1,6 +1,6 @@
 # 01. Django란? 
+<img src='https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/b14b9f62-c11d-4d61-93c7-c31f0b4a7a4f' width = '300' height = '200'/>
 
-![image](https://github.com/BE02LEEJAEHOON/oz_class/assets/155046462/b14b9f62-c11d-4d61-93c7-c31f0b4a7a4f)
 
 ## 장고란 무엇인가?
   - 장고(Django)는 파이썬으로 만들어진 무료 오픈소스 웹 애플리케이션 프레임워크(Web Application FrameWork)이다.
