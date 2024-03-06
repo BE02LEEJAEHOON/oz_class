@@ -49,3 +49,16 @@
       - Python Version Compatibility: 프로젝트가 호환되는 Python 버전을 지정합니다. 예를 들어, **^3.7**은 Python 3.7 이상의 버전과 호환됨을 의미합니다.
       - Dependency Specification: 프로젝트의 의존성을 지정합니다. 필요한 외부 패키지를 여기에 추가할 수 있습니다.
       - Development Dependency Specification: 개발 시에만 필요한 의존성을 지정합니다. 예를 들어, 테스팅 라이브러리나 문서화 도구 등이 여기에 해당됩니다.
+   
+## 가상환경에서 Django 실행
+    - > poetry shell # 가상환경으로 접속
+      > django-admin # 가상환경의 django 실행
+      > exit # 밖으로 나오기
+      
+      > django-admin # 전역 django 실행 => 실행안됨. 가상환경에 설치한 것이기 때문에
+      
+      # 라이브러리 설치하려면 아래와 같이. (pip이 아님에 주의)
+      > poetry add selenium
+
+## Django 프로젝트 생성
+    - django-admin startproject config . # 현재 폴더에서 프로젝트 생성 ( . 은 현재 경로)
