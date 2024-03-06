@@ -41,11 +41,11 @@
   - poetry init 명령을 실행하면, pyproject.toml 파일을 설정하는 과정이 시작됩니다.
     pyproject.toml 파일은 프로젝트의 메타데이터와 의존성을 관리하는 데 사용되며, Poetry를 사용하는 Python 프로젝트의 핵심 구성 파일입니다.
     
-    Package Name: 프로젝트 또는 패키지의 이름입니다. 일반적으로 프로젝트의 디렉토리 이름을 기본값으로 사용합니다.
-    Version: 패키지의 시작 버전입니다. 일반적으로 **0.1.0**으로 시작하며, 개발 진행에 따라 버전을 업데이트합니다.
-    Description: 프로젝트의 간단한 설명입니다. 이 내용은 PyPI 등의 패키지 저장소에 표시됩니다.
-    Author Name: 패키지의 작성자 또는 유지 관리자의 이름입니다. 이 정보는 선택 사항이지만, 공개 패키지의 경우 중요할 수 있습니다.
-    License: 프로젝트에 적용할 라이선스입니다. Open Source 프로젝트의 경우, 일반적으로 MIT, GPL, Apache 등의 라이선스를 사용합니다.
-    Python Version Compatibility: 프로젝트가 호환되는 Python 버전을 지정합니다. 예를 들어, **^3.7**은 Python 3.7 이상의 버전과 호환됨을 의미합니다.
-    Dependency Specification: 프로젝트의 의존성을 지정합니다. 필요한 외부 패키지를 여기에 추가할 수 있습니다.
-    Development Dependency Specification: 개발 시에만 필요한 의존성을 지정합니다. 예를 들어, 테스팅 라이브러리나 문서화 도구 등이 여기에 해당됩니다.
+      - Package Name: 프로젝트 또는 패키지의 이름입니다. 일반적으로 프로젝트의 디렉토리 이름을 기본값으로 사용합니다.
+      - Version: 패키지의 시작 버전입니다. 일반적으로 **0.1.0**으로 시작하며, 개발 진행에 따라 버전을 업데이트합니다.
+      - Description: 프로젝트의 간단한 설명입니다. 이 내용은 PyPI 등의 패키지 저장소에 표시됩니다.
+      - Author Name: 패키지의 작성자 또는 유지 관리자의 이름입니다. 이 정보는 선택 사항이지만, 공개 패키지의 경우 중요할 수 있습니다.
+      - License: 프로젝트에 적용할 라이선스입니다. Open Source 프로젝트의 경우, 일반적으로 MIT, GPL, Apache 등의 라이선스를 사용합니다.
+      - Python Version Compatibility: 프로젝트가 호환되는 Python 버전을 지정합니다. 예를 들어, **^3.7**은 Python 3.7 이상의 버전과 호환됨을 의미합니다.
+      - Dependency Specification: 프로젝트의 의존성을 지정합니다. 필요한 외부 패키지를 여기에 추가할 수 있습니다.
+      - Development Dependency Specification: 개발 시에만 필요한 의존성을 지정합니다. 예를 들어, 테스팅 라이브러리나 문서화 도구 등이 여기에 해당됩니다.
