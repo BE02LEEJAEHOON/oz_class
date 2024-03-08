@@ -144,8 +144,8 @@
 
 ## 모델 필드 간략한 설명
     - 숫자
-    - IntegerField
-    - PositiveIntegerField
+        - IntegerField
+        - PositiveIntegerField
     - 문자
         - CharField
         - TextField
