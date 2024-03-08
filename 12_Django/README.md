@@ -143,6 +143,22 @@
     - Django에서 모델(Model)은 웹 애플리케이션의 데이터 구조를 정의하고 데이터베이스와의 상호작용을 관리하는 중요한 부분입니다. 모델은 Django의 ORM (Object-Relational Mapping) 시스템의 핵심이며, 데이터베이스 테이블과             Python 클래스를 연결합니다. 모델을 사용함으로써 복잡한 SQL 쿼리 없이 데이터베이스를 간편하게 조작할 수 있습니다.
 
 ## 모델 필드 간략한 설명
+    - 숫자
+    - IntegerField
+    - PositiveIntegerField
+    - 문자
+        - CharField
+        - TextField
+        - URLField
+        - EmailField
+    - 날짜
+        - DateField
+        - DateTimeField
+    - 기타
+        - ImageField
+        - JSONField
+
+        
 | 필드 타입 | 설명 | 추가 파라미터 |
 | --- | --- | --- |
 | CharField | 짧은 문자열 저장 | max_length=100 |
@@ -169,9 +185,11 @@
 | EmailField | 이메일 주소 저장 | - |
 
 
+
 ## 모델 내 파일 구조
     - admin.py: 관리자 페이지 관련
     - apps.py: 메인 파일
     - models.py: 모델 관련 파일
     - views.py: 화면을 그려주는 파일
+
 
