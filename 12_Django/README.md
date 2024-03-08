@@ -193,3 +193,73 @@
     - views.py: 화면을 그려주는 파일
 
 
+## Custom UserAdmin
+
+### **1. Custom User 모델 생성하기**
+
+먼저, 사용자 정의 User 모델을 만들어야 합니다. **`AbstractUser`**를 상속받아 필요한 필드를 추가합니다.
+
+**`models.py`** 예제:
+
+```python
+from django.contrib.auth.models import AbstractUser
+
+class CustomUser(AbstractUser):
+    # 추가 필드 예시
+    age = models.PositiveIntegerField(null=True, blank=True)
+```
+
+### **2. Custom User 모델을 프로젝트에 등록하기**
+
+**`settings.py`** 파일에서 **`AUTH_USER_MODEL`**을 설정하여 새로운 사용자 모델을 지정합니다.
+
+```python
+AUTH_USER_MODEL = 'your_app_name.CustomUser'
+```
+
+### **3. Custom UserAdmin 클래스 만들기**
+
+이제 **`admin.py`**에서 **`UserAdmin`** 클래스를 상속받아 커스텀 클래스를 만듭니다.
+
+**`admin.py`** 예제:
+
+```python
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
+from .models import CustomUser
+
+class CustomUserAdmin(UserAdmin):
+    model = CustomUser
+    # 추가 필드를 관리자 페이지에 표시하기 위한 설정
+    fieldsets = UserAdmin.fieldsets + (
+        (None, {'fields': ('age',)}),
+    )
+    add_fieldsets = UserAdmin.add_fieldsets + (
+        (None, {'fields': ('age',)}),
+    )
+```
+
+### **4. 관리자 사이트에 Custom UserAdmin 등록하기**
+
+**`admin.py`** 파일에서 **`admin.site.register()`**를 사용하여 Custom User 모델을 등록합니다.
+
+```python
+admin.site.register(CustomUser, CustomUserAdmin)
+=> or
+@admin.register(CustomUser)
+class CustomUserAdmin(UserAdmin):
+```
+
+### **5. 데이터베이스 마이그레이션**
+
+모델 변경 사항을 데이터베이스에 반영하기 위해 마이그레이션을 실행합니다.
+
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+### **6. 테스트 및 확인**
+
+마지막으로 Django 관리자 사이트에 로그인하여 CustomUser 모델이 올바르게 표시되는지 확인합니다.
+
