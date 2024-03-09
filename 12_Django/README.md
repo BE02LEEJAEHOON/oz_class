@@ -263,3 +263,266 @@ python manage.py migrate
 
 마지막으로 Django 관리자 사이트에 로그인하여 CustomUser 모델이 올바르게 표시되는지 확인합니다.
 
+
+
+## ORM (Object-Relational Mapping) 이란?
+    - 객체(Object) - 장고
+    - 관계형(Relational)데이터베이스 DB - RDBMS
+    - 위 2개를 Mapping(연결) 시켜주는 것
+    
+    ⇒DB에 있는 데이터들을 객체처럼 사용할 수 있도록 도와준다.
+
+### 자주 사용하는 함수
+
+Django의 QuerySet은 데이터베이스 쿼리를 생성하고 실행하는 강력한 도구입니다. 각 QuerySet 메소드의 기능을 이해하고 사용하는 것은 Django 애플리케이션 개발에서 중요한 부분입니다. 아래에서는 주요 QuerySet 메소드들에 대한 설명과 예시 코드를 제공하겠습니다.
+
+### **1. `filter()`**
+
+- **설명**: 조건에 맞는 객체들만 포함하는 새 QuerySet을 반환합니다.
+- **예시**:
+    
+    ```python
+    from myapp.models import MyModel
+    
+    # name이 'John'인 객체들 전부 필터링
+    queryset = MyModel.objects.filter(name='John')
+    ```
+    
+
+### **2. `exclude()`**
+
+- **설명**: 주어진 조건을 만족하지 않는 객체들만 포함하는 새 QuerySet을 반환합니다.
+- **예시**:
+    
+    ```python
+    # age가 30 미만인 객체들만 필터링
+    queryset = MyModel.objects.exclude(age__lt=30)
+    ```
+    
+
+### **3. `annotate()`**
+
+- **설명**: 집계 함수를 적용하거나 쿼리 결과에 계산된 필드를 추가합니다.
+- **예시**:
+    
+    ```python
+    from django.db.models import Count
+    
+    # 각 카테고리별로 포함된 객체의 수를 계산
+    queryset = MyModel.objects.values('category').annotate(count=Count('id'))
+    ```
+    
+
+### **4. `aggregate()`**
+
+- **설명**: **`aggregate()`** 함수는 QuerySet에 포함된 객체들에 대해 집계 연산(합계, 평균, 최소값, 최대값 등)을 수행합니다. 이 메소드는 데이터베이스 레벨에서 집계 연산을 실행하고, 그 결과를 딕셔너리 형태로 반환합니다.
+- **예시**:
+    
+    ```python
+    from django.db.models import Avg, Count, Max, Min, Sum
+    
+    # 모든 객체의 age 필드에 대한 평균을 계산
+    average_age = MyModel.objects.aggregate(average_age=Avg('age'))
+    
+    # age 필드의 최대값, 최소값, 합계, 객체 수를 계산
+    aggregate_values = MyModel.objects.aggregate(
+        max_age=Max('age'),
+        min_age=Min('age'),
+        total_age=Sum('age'),
+        count=Count('id')
+    )
+    ```
+    
+    이 예시에서 **`average_age`**는 평균 나이를, **`aggregate_values`**는 나이의 최대값, 최소값, 총합, 그리고 객체의 수를 각각 계산합니다. 반환된 결과는 딕셔너리 형태로, 예를 들어 **`average_age['average_age']`** 또는 **`aggregate_values['max_age']`**와 같은 방식으로 접근할 수 있습니다.
+    
+
+### 5. `order_by()`
+
+- **설명**: QuerySet의 결과를 특정 필드에 따라 정렬합니다.
+- **예시:**
+
+```scss
+# 'created_at' 필드에 따라 오름차순으로 정렬
+queryset = MyModel.objects.order_by('created_at')
+
+# 'name' 필드에 따라 내림차순으로 정렬
+queryset = MyModel.objects.order_by('-name')
+```
+
+### **6. `all()`**
+
+- **설명**: 데이터베이스의 모든 레코드를 포함하는 QuerySet을 반환합니다.
+- **예시**:
+    
+    ```python
+    # MyModel의 모든 객체를 포함하는 QuerySet
+    queryset = MyModel.objects.all() # select * from
+    ```
+    
+
+### **7. `get()`**
+
+- **설명**: 단일 객체를 반환합니다. 조건에 맞는 객체가 없거나 둘 이상인 경우 예외를 발생시킵니다.
+- **예시**:
+    
+    ```python
+    # 'id'가 1인 단일 객체를 검색
+    try:
+        my_object = MyModel.objects.get(id=1)
+    except MyModel.DoesNotExist:
+        # 객체가 존재하지 않을 때 처리
+    except MyModel.MultipleObjectsReturned:
+        # 여러 객체가 반환됐을 때 처리
+    ```
+    
+
+### **8. `exists()`**
+
+- **설명**: QuerySet에 하나 이상의 객체가 존재하는지 여부를 확인합니다.
+- **예시**:
+    
+    ```python
+    # 조건에 해당하는 객체가 있는지 확인
+    if MyModel.objects.filter(name='John').exists():
+        # 처리 로직
+    ```
+    
+
+### **9. `count()`**
+
+- **설명**: QuerySet에 포함된 객체의 수를 반환합니다.
+- **예시**:
+    
+    ```python
+    # QuerySet에 포함된 객체의 수를 계산
+    count = MyModel.objects.filter(name='John').count()
+    ```
+    
+
+### **10. `select_related()`와 `prefetch_related()`**
+
+- **설명**: 관련된 객체를 효율적으로 불러오기 위한 메소드입니다. **`select_related()`**는 SQL의 JOIN을 사용하여 관련 객체를 한 번의 쿼리로 불러옵니다. **`prefetch_related()`**는 별도의 쿼리를 실행하여 관련 객체를 미리 가져옵니다.
+- **예시**:
+    
+    두 함수의 차이는 객체들을 불러오는 방식에 차이가 있습니다.
+    
+    **1. `select_related()` 사용 예시**
+    
+    - **상황**: "블로그 글"과 "작성자"가 있으며, 각 블로그 글은 하나의 작성자와 연결되어 있습니다.
+    - **모델 구조**:
+        
+        ```python
+        class Author(models.Model):
+            name = models.CharField(max_length=100)
+        
+        class BlogPost(models.Model):
+            title = models.CharField(max_length=100)
+            content = models.TextField()
+            author = models.ForeignKey(Author, on_delete=models.CASCADE)
+        ```
+        
+    - **`select_related()` 사용**:
+        
+        ```python
+        # BlogPost와 연관된 Author 객체를 한 번의 쿼리로 불러옵니다.
+        posts = BlogPost.objects.select_related('author').all()
+        
+        for post in posts:
+            print(post.title, post.author.name)
+        ```
+        
+        여기서 **`select_related('author')`**는 BlogPost와 Author 테이블을 JOIN하여 한 번의 쿼리로 데이터를 가져옵니다. 이는 관련된 객체가 "하나"일 때 유용합니다.
+        
+    
+    **2. `prefetch_related()` 사용 예시**
+    
+    - **상황**: "강사"와 "강의"가 있으며, 각 강사는 여러 강의를 진행할 수 있습니다.
+    - **모델 구조**:
+        
+        ```python
+        class Instructor(models.Model):
+            name = models.CharField(max_length=100)
+        
+        class Course(models.Model):
+            title = models.CharField(max_length=100)
+            instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+        ```
+        
+    - **`prefetch_related()` 사용**:
+        
+        ```python
+        # 각 Instructor에 연결된 모든 Course 객체를 별도의 쿼리로 미리 가져옵니다.
+        instructors = Instructor.objects.prefetch_related('course_set').all()
+        
+        for instructor in instructors:
+            print(instructor.name)
+            for course in instructor.course_set.all():
+                print(course.title)
+        ```
+        
+        여기서 **`prefetch_related('course_set')`**는 Instructor와 연결된 모든 Course 객체를 별도의 쿼리로 가져온 후, Python에서 이를 조합합니다. 이는 관련된 객체가 "여럿"일 때 유용합니다.
+        
+        이러한 방식으로 **`select_related()`**와 **`prefetch_related()`**를 사용하면 데이터베이스의 부담을 줄이면서 필요한 데이터를 효과적으로 불러올 수 있습니다.
+
+## filter() - 필터 함수 사용법
+```python
+from boards.models import Board
+from users.models import User
+
+# filter
+User.objects.filter(is_business=False)
+
+# (3) __ (double under score, lookup)
+# https://docs.djangoproject.com/en/4.1/ref/models/querysets/
+Board.objects.filter(likes__gt=10) # likes > 10
+
+gt=>greater than # likes > 10 (초과)
+gte=>greater than equal # likes >= 10 (이상)
+lt=>less than # likes < 10 (미만)
+lte=>less than equal # likes <= 10 (이하)
+
+
+# title에 "제목" 이라는 단어가 들어가는 객체들을 모두 반환
+Board.objects.filter(title__contains="제목")
+
+# content에 "내용" 이라는 단어가 들어가는 객체들을 모두 반환
+Board.objects.filter(content__contains="내용")
+
+# (4) create
+Board.objects.create(title="제목2", content="내용2", likes=1, user=User.objects.get(pk=1))
+
+Board.objects.create(title="추가제목", content="추가내용", likes=3, content="두 번째 피드", user_id=1)
+
+# (5) delete
+board = Board.objects.get(pk=2)
+board.delete()
+
+Board.objects.all()
+# -> 삭제 된 데이터 확인
+
+---------------------------------------------
+
+from django.db.models import Q
+
+# or
+# filter(Q(<condition_1>|Q(<condition_2>)
+Board.objects.filter(Q(content__contains="내용") | Q(likes__gt=10))
+
+# and
+# filter(<condition_1>, <condition_2>)
+Board.objects.filter(content__contains="내용", likes__gt=10) # 여러 조건 적용 가능
+
+# not
+# filter(~Q(<condition>))
+User.objects.filter(~Q(is_business=False))
+
+# count
+Board.objects.filter(content__contains="내용", likes__gt=10).count()
+
+len([1,2,3])
+len(QuerySet[1,2,3])
+len(user.board_set.all()) => 안먹힌다.
+
+user.board_set.all().count()
+```
+
