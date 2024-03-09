@@ -517,7 +517,7 @@ Board.objects.filter(content__contains="내용", likes__gt=10) # 여러 조건 �
 User.objects.filter(~Q(is_business=False))
 
 # count
-Board.objects.filter(content__contains="내용", likes__gt=10).count()
+Board.objects.filter(content__contains="내용", likes__gt=10).count() # 갯수를 반환 해주는 함수
 
 len([1,2,3])
 len(QuerySet[1,2,3])
@@ -525,4 +525,90 @@ len(user.board_set.all()) => 안먹힌다.
 
 user.board_set.all().count()
 ```
+
+## reverse accessors
+    - 역의 관계로 원하는 데이터를 찾는 방법
+    - 관계를 역참조할 수 있는
+```python
+from users.models import User
+
+user = User.objects.get(pk=1) # pk가 1인 user를 가져옴
+user.board => X
+board.user => O
+
+dir(user) # 이 함수를 통해서 user에서 사용가능한 모든 함수의 리스트를 본다.
+
+BOARD => USER
+USER <= BOARD (X)
+
+user.board_set
+
+user.board_set.all()
+
+> user.board_set.all()
+<QuerySet [<Board: 제목>, <Board: title2>, <Board: updated title>]>
+```
+## QuerySet이란
+
+Django의 QuerySet은 데이터베이스로부터 데이터를 조회하고 필터링하는 데 사용되는 핵심 개념입니다. QuerySet은 데이터베이스의 테이블로부터 객체 집합을 나타내며,
+여러 가지 방식으로 이 집합을 조작하고 필터링할 수 있습니다. QuerySet의 주요 특징과 기능은 다음과 같습니다.
+
+### **1. 지연된 실행 (Lazy Execution)**
+
+- QuerySet은 '지연된 실행'을 사용합니다. 즉, QuerySet이 실제로 데이터베이스를 조회하는 것은 해당 QuerySet에 대한 연산이나 반복이 시작될 때까지 지연됩니다. 이는 데이터베이스의 부담을 줄이고 성능을 최적화하는 데 도움이 됩니다.
+
+### **2. 메소드 체이닝 (Method Chaining)**
+
+- QuerySet은 메소드 체이닝을 지원합니다. 즉, 여러 QuerySet 메소드들을 연결하여 하나의 쿼리 문장을 구성할 수 있습니다. 이는 코드의 가독성과 효율성을 향상시킵니다.
+
+### **3. 주요 메소드**
+
+- **`filter()`**: 조건에 맞는 객체들만 포함하는 새 QuerySet을 반환합니다.
+- **`exclude()`**: 주어진 조건을 만족하지 않는 객체들만 포함하는 새 QuerySet을 반환합니다.
+- **`annotate()`**: 집계 함수를 적용하거나 쿼리 결과에 계산된 필드를 추가합니다.
+- **`aggregate()`**: 전체 QuerySet에 대한 집계(합계, 평균 등)를 계산합니다.
+- **`order_by()`**: QuerySet의 결과를 특정 필드에 따라 정렬합니다.
+- **`all()`**: 데이터베이스의 모든 레코드를 포함하는 QuerySet을 반환합니다.
+- **`get()`**: 단일 객체를 반환합니다. 조건에 맞는 객체가 없거나 둘 이상인 경우 예외를 발생시킵니다.
+
+### **4. 캐싱**
+
+- 한 번 평가된 QuerySet은 결과를 캐시합니다. 따라서 동일한 QuerySet을 다시 사용할 때 데이터베이스에 대한 추가적인 쿼리가 발생하지 않습니다.
+
+### **5. QuerySet 슬라이싱**
+
+- 파이썬의 리스트 슬라이싱과 유사하게 QuerySet도 슬라이싱이 가능합니다. 이를 통해 쿼리 결과의 특정 부분만을 쉽게 추출할 수 있습니다.
+
+### **6. 복잡한 쿼리**
+
+- **`Q`** 객체를 사용하여 더 복잡한 쿼리 조건을 구성할 수 있으며, **`F`** 객체를 사용하여 필드 간의 관계나 조건을 표현할 수 있습니다.
+
+### **7. 데이터베이스 최적화**
+
+**`select_related()`**와 **`prefetch_related()`** 메소드를 사용하여 데이터베이스 쿼리의 수를 줄이고 성능을 최적화할 수 있습니다. **`select_related()`**는 외래키 관계를 따라 데이터베이스 조인을 사용하여 관련 객체를 한 번의 쿼리로 불러옵니다. 반면, **`prefetch_related()`**는 별도의 쿼리를 실행하여 관련 객체를 미리 가져옵니다.
+
+### **8. 모델 인스턴스 반환**
+
+- QuerySet은 모델 클래스의 인스턴스를 반환합니다. 즉, QuerySet을 통해 조회된 각 객체는 해당 Django 모델의 인스턴스입니다. 이를 통해 모델 인스턴스의 메소드와 속성을 사용할 수 있습니다.
+
+### **사용 예시**
+
+Django 모델 **`MyModel`**에 대한 QuerySet 사용 예시입니다.
+
+```python
+from myapp.models import MyModel
+
+# 조건에 맞는 객체들을 조회
+my_objects = MyModel.objects.filter(name="example")
+
+# 정렬, 슬라이싱
+ordered_objects = MyModel.objects.order_by('-created_at')[:30]
+
+# 복잡한 쿼리
+from django.db.models import Q
+complex_query = MyModel.objects.filter(Q(name="example") | Q(description="example"))
+```
+
+Django 개발에서 QuerySet은 데이터 관리 및 검색을 효과적으로 수행하는 데 중요합니다.
+
 
