@@ -3,8 +3,11 @@ from rest_framework.exceptions import ParseError, NotFound
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication # 어떤 유저인지 식별하기 위한 api (사용자 인증?)
-from rest_framework.permissions import IsAuthenticated # 특정한 api (인증된 유저들만 볼 수 있는 페이지 ?? 권한부여??)
+from rest_framework.permissions import  IsAuthenticated # 특정한 api (인증된 유저들만 볼 수 있는 페이지 ?? 권한부여??)
+from rest_framework import status
 from .serializers import MyInfoUserSerializer
+from django.contrib.auth import authenticate, login, logout
+
 
 
 # api/v1/users [POST] -> 유저 생성 api
@@ -55,3 +58,71 @@ class MyInfo(APIView):
             return Response(serializer.data)
         else:
             return Response(serializer.errors)
+        
+
+# api/v1/users/login (로그인은 POST 방식으로 진행해야함. GET으로 할 경우 보안에 취약함)
+class Login(APIView):
+    def post(self, request):
+        username = request.data.get('username')
+        password = request.data.get('password')
+        
+        if not username or not password:
+            raise ParseError()
+        
+        user = authenticate(request, username=username, password=password)
+        
+        if user:
+            login(request, user)
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_403_FORBIDDEN)
+        
+
+# api/v1/users/logout
+class Logout(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        print('header : ', request.headers)
+        logout(request)
+        
+        return Response(status=status.HTTP_200_OK)
+    
+# api/v1/users/login/jwt
+import jwt
+from django.conf import settings
+
+class JWTLogin(APIView):
+    def post(self, request):
+        username = request.data.get("username")
+        password = request.data.get("password")
+
+        if not username or not password:
+            raise ParseError
+
+        user = authenticate(request, username=username, password=password) # authenticate = 인증
+
+        if user:
+            payload = {"id": user.id, "username": user.username}
+            
+            token = jwt.encode(
+                payload,
+                settings.SECRET_KEY,
+                algorithm="HS256",
+            )
+            
+            return Response({"token": token})
+
+
+# api/v1/users/login/jwt/info
+from config.authentication import JWTAuthentication        
+class UserDetailView(APIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        return Response({
+            "id": user.id,
+            "username": user.username
+        })

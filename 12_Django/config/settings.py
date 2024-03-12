@@ -126,6 +126,7 @@ AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication', # 추가
+        # 'rest_framework.authentication.TokenAuthentication', # 토큰 추가
+         'config.authentication.JWTAuthentication',  # 커스텀 JWT 인증 클래스 사용
     ],
 }
