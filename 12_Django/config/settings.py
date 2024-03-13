@@ -128,12 +128,7 @@ AUTH_USER_MODEL = 'users.User'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         # 'rest_framework.authentication.TokenAuthentication', # 토큰 추가
-<<<<<<< HEAD
          'config.authentication.JWTAuthentication',  # 커스텀 JWT 인증 클래스 사용
-=======
-        # 'config.authentication.JWTAuthentication',  # 커스텀 JWT 인증 클래스 사용
-         'rest_framework_simplejwt.authentication.JWTAuthentication', # 심플 JWT
->>>>>>> b99c473 (django update)
     ],
 }
 
