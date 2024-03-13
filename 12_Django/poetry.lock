@@ -403,8 +403,4 @@ h11 = ">=0.9.0,<1"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-<<<<<<< HEAD
 content-hash = "c1c6d04ae6cb08035da3fb2def85f5bca8ca47a9e07f787d4236ab74d6f89ee8"
-=======
-content-hash = "3b177491ef079f666c6d86906d7b3cc1f720c0744cb853dc31fd5c9e11e608e6"
->>>>>>> b99c473 (django update)
