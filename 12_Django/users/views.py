@@ -117,7 +117,11 @@ class JWTLogin(APIView):
 # api/v1/users/login/jwt/info
 from config.authentication import JWTAuthentication        
 class UserDetailView(APIView):
+<<<<<<< HEAD
     authentication_classes = [JWTAuthentication]
+=======
+    # authentication_classes = [JWTAuthentication]
+>>>>>>> b99c473 (django update)
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
