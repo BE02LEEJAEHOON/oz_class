@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from typing import List, Optional
-from .models import Book, CreateBook, SearchBooks
+from models import Book, CreateBook, SearchBooks
 
 
 router = APIRouter()
