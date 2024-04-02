@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문 만들기</title>
+</head>
+<body>
+    <h1></h1>
+    <p></p>
+    <script>
+   const h1 = document.querySelector('h1')
+   const p = document.querySelector('p')
+
+   const age = parseInt(prompt('나이가 어떻게 되세요?'))
+
+   if(age >= 20){
+    p.textContent = '성인이시네요!'
+   }
+   else{
+    p.textContent = '민짜군요 !'
+   }
+
+//    const isThere = confirm("제목 표시를 할까요?")
+
+//    if(isThere){
+//     h1.textContent = '문서의 제목!!'
+    </script>
+</body>
+</html>

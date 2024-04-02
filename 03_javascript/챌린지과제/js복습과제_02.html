@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>carousel</title>
+    <style>
+   *{
+  box-sizing: border-box;
+}
+
+.carousel-wrapper {
+  width: 500px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.carousel-wrapper > .carousel {
+  display: flex;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.2s;
+}
+
+.carousel-wrapper > .carousel > img {
+  width: 500px;
+  height: 300px;
+}
+    </style>
+</head>
+<body>
+   <div class="carousel-wrapper">
+    <div calss="carousel">
+        <img 
+        src="https://e0.pxfuel.com/wallpapers/32/832/desktop-wallpaper-pokemon-bulbasaur-pikachu-squirtle-charmander-cute-bulbasaur.jpg"
+        alt=""/>
+        <img
+        src="https://e0.pxfuel.com/wallpapers/210/371/desktop-wallpaper-pokemonpokemon-pokemon-squirtle-charmander-bulbasaur-iphone-1280-cute-charmander.jpg"
+        alt=""/>
+        <img
+        src="https://e0.pxfuel.com/wallpapers/951/228/desktop-wallpaper-bulbasaur-charmander-and-squirtle-anime.jpg"
+        alt=""/>
+    </div>
+   </div>
+       <button id="bg_change" type="button">배경색</button> 
+       <button class="prev" type="button">prev</button>
+       <button class="next" type="button">next</button>
+
+    <script>
+        let bg_change
+        bg_change = document.querySelector("#bg_change");
+        bg_change.addEventListener("click", function(){
+            document.body.style.backgroundColor = 'skyblue';
+        })
+
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    const carousel = document.querySelector('.carousel');
+
+let index = 0;
+
+prevButton.addEventListener('click', () => {
+   if (index === 0) return;
+   index -= 1;
+   
+   carousel.style.transform = `translate3d(-${500 * index}px, 0, 0)`;
+});
+
+nextButton.addEventListener('click', () => {
+   if (index === 2) return;
+   index += 1;
+   
+   carousel.style.transform = `translate3d(-${500 * index}px, 0, 0)`;
+});
+    </script>
+
+</body>
+</html>

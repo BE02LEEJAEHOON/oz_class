@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <input id="talk">
+    <input id="push" type="button" value="push">
+
+    <form id="form">
+        <input name="name">
+        <input name="nick">
+        <input type="submit">
+    </form>
+
+    <script>
+        // const input = document.getElementById("talk")
+        // const button = document.getElementById("push")
+
+        // button.addEventListener("click", function(){
+        //     input.value = "버튼눌러서 써짐"
+        // })
+        
+        const form = document.getElementById("form")
+        form.addEventListener("submit", function(event){
+            event.preventDefault()
+            event.target.name.value
+        })
+       
+    </script>
+</body>
+</html>

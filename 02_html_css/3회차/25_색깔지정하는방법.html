@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-copatible" content="IE=edge">
+    <title>색깔을 지정하는 다양한 방법</title>
+    <style>
+        p#one{
+            color: rgb(0%, 50%, 0%);
+            opacity: 0.5; /* 투명도 조절해주는 코드*/
+        }
+
+        p#two{
+            color: rgba(0%, 50%, 0%, 0.5);
+        }
+
+        p#three{
+            color: hsl(300, 100%, 80%)
+        }
+
+        p#four{
+            color: #FF00FF99;
+            /*
+            0 1 2 3 4 5 6 7 8 9 => 10진수표기
+            0123456789ABCDEF => 16진수표기
+            00 ~ FF : FF는 255다
+
+            */
+        }
+    </style>
+</head>
+<body>
+    <p id="one">고소한 아몬드와 함께 여는 아침!</p>
+    <p id="two">고소한 아몬드와 함께 여는 아침!</p>
+    <p id="three">고소한 아몬드와 함께 여는 아침!</p>
+    <p id="four">고소한 아몬드와 함께 여는 아침!</p>
+</body>
+</html>

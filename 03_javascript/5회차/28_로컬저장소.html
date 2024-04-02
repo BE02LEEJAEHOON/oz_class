@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html lang="ko">
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <p id="item">이봉주</p>
+    <button id="set">SET</button>
+    <button id="get">GET</button>
+    <button id="remove">REMOVE</button>
+    <button id="claer">CLEAR</button>
+    
+    <script>
+        
+        const item = document.getElementById("item")
+        document.getElementById("set").addEventListener("click", function(){
+            localStorage.setItem("마라토너", item.textContent)
+        })
+
+    </script>
+</body>
+</html>

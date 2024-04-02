@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+
+        }
+        #grade {
+            display: none;
+        }
+    
+    </style>
+</head>
+<body>
+
+    <h1>다음 조건에 맞게 코드를 작성해주세요</h1>
+    <ol>조건
+    <li>입력창을 띄워 사용자의 0 ~100점의 숫자를 받는다 </li>
+    <li>입력 받은 점수에 맞는 성적의 등급을 나눈다</li>
+    <table id="grade" border="1">
+        <tr>
+            <td>점수</td>
+            <td>90점 이상</td>
+            <td>80~89점</td>
+            <td>70~79점</td>
+            <td>60~69점</td>
+            <td>60점 미만</td>
+        </tr>
+        <tr>
+            <td>학점</td>
+            <td>A</td>
+            <td>B</td>
+            <td>C</td>
+            <td>D</td>
+            <td>E</td>
+        </tr>
+    </table>
+    <li>나의 기말고사 점수는 __점, 학점은 __!!!</li>
+    <hr>
+    <p>예시) 나의 기말고사 점수는 89점, 학점은 B!!!</p>
+
+    <script>
+       let userInput = prompt("중간고사 점수를 입력하세요")
+
+       if(userInput){
+        document.getElementById("grade").style.display = "table";
+       }
+    </script>
+</ol>
+</body>
+</html>

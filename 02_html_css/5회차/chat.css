@@ -1,0 +1,91 @@
+/* 전체적인 세팅부터 */
+*{
+    box-sizing: border-box;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+    margin: 0;
+}
+.container{
+    height: 100%;
+    background-color: rgb(168, 217, 227);
+    overflow-y: scroll; /* 후 ㅠ 지피티활용 */
+}
+
+스크린 크기 조정
+.chat-screen{
+    height: calc(100% - 120px);
+}
+
+/*유저 정보 표시되는 부분*/
+.user{
+    background-color: white;
+    padding: 16px;
+    height: 80px;
+}
+
+.user__column{
+    float: left;
+}
+
+.user__pic{
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 10px;
+    background-color: rgb(168, 217, 227);
+    background-image: url('images/2zidol.jpeg');
+    background-size: cover;
+    
+}
+.user__nick, .user__count{
+    margin: 5px;
+}
+
+.user__count{
+    font-size: 12px;
+    color: gray;
+}
+
+/*채팅 입력 창*/
+.chat-form{
+    height: 120px;
+    background-color: aliceblue;
+}
+
+.chat-form__field{
+    height: 120px;
+}
+
+.chat-form__msg{
+    float: left;
+    width: calc(100% - 120px);
+    height: 120px;
+    border: none;
+    resize: none;
+    font-size: 24px;
+    padding: 10px;
+}
+
+.chat-form__bt{
+    float: right;
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    background-color: rgb(255, 187, 61);
+    font-size: 18px;
+}
+
+.chat-form__bt:active{
+    background-color: orange;
+}
+
+.chat-form__msg:focus{
+    outline: none;
+}
+

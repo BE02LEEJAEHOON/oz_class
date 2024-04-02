@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "test-flask"
+version = "0.1.0"
+description = ""
+authors = ["BE02LEEJAEHOON <ljhx6787@naver.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+flask = "^3.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
