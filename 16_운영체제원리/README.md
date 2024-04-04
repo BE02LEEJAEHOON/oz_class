@@ -13,3 +13,21 @@
 - **주소 버스(Address Bus)**: 메모리 주소를 전달하는데 사용되며, CPU가 메인 메모리나 입출력 장치에 접근할 때 사용됨.
 - **데이터 버스(Data Bus)**: 실제 데이터 전송에 사용되는 버스로, CPU와 메모리 간 데이터 전송에 활용됨.
 - **제어 버스(Control Bus)**: 제어 신호를 전달하는데 사용되며, 주로 명령어 실행을 조절하고 하드웨어 간 통신을 관리함.
+
+
+# 2. 프로세스 생성
+```python
+import os
+import psutil
+
+# 파이썬 프로그램의 PID 가져오기
+pid = os.getpid() # os.getpid()를 사용하여 현재 파이썬 프로그램의 PID를 가져옴.
+
+# 현재 실행 중인 모든 프로세스에 대해 순차적으로 접근
+for proc in psutil.process_iter(): #psutil.process_iter()를 사용하여 현재 실행 중인 모든 프로세스에 대해 순차적으로 접근.
+    # 프로세스의 PID와 내 파이썬 프로그램의 PID 비교
+    if proc.pid == pid:
+        # 파이썬 프로그램의 프로세스를 찾았을 때 프로세스 이름 출력
+        print("내 파이썬 프로그램의 프로세스 이름:", proc.name())
+        break  # 프로세스 일치하면 종료
+```
